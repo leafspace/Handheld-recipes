@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="#ffffff"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+        <Button
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/backButton"
+                android:background="@drawable/backbutton"
+        android:onClick="goBack"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:textColor="#999999"
+                android:layout_weight="1"
+                android:gravity="center"
+        android:background="@drawable/searchview"/>
+        <Button
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/searchButton"
+                android:layout_weight="0.03"
+        android:background="@drawable/searchbutton"
+        android:onClick="goSearch"/>
+    </LinearLayout>
+    <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listView" />
+</LinearLayout>

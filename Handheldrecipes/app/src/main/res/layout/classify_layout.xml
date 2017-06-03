@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="250dp">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="140dp"
+            android:layout_height="250dp">
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:background="@drawable/goodsbackground">
+
+            <ImageView
+                    android:layout_width="105dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView1"
+            android:src="@drawable/food_10"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/goodsbackground">
+
+            <ImageView
+                    android:layout_width="170dp"
+                    android:layout_height="115dp"
+                    android:id="@+id/imageView2"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/goodsbackground">
+
+            <ImageView
+                    android:layout_width="170dp"
+                    android:layout_height="115dp"
+                    android:id="@+id/imageView3"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
