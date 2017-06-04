@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" android:orientation="vertical">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:weightSum="1"
+              android:gravity="top|center">
 
     <ImageView
-            android:src="@drawable/food_1"
-            android:layout_width="308dp"
-            android:layout_height="294dp" android:id="@+id/imageView" android:scaleType="fitCenter"/>
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:id="@+id/imageView"
+            android:scaleType="fitXY"
+    />
     <TextView
-            android:text="TextView"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView"/>
+            android:layout_height="28dp"
+            android:id="@+id/textView1"
+            android:textSize="24sp"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center" android:layout_weight="0.13">
+                <TextView
+                        android:text="怎么做呢"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/textView2"/>
+                <ImageView
+                        android:src="@drawable/question"
+                        android:layout_width="175dp"
+                        android:layout_height="87dp" android:id="@+id/imageView1"/>
+            </LinearLayout>
+            <TextView
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:background="@drawable/border"
+            android:layout_height="50dp">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:id="@+id/linearLayout1"
+                android:onClick="doClick1">
+            <ImageView
+                    android:src="@drawable/good_before"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView2"/>
+            <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:gravity="left|center_vertical"
+                    android:id="@+id/textView4"
+            />
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:id="@+id/linearLayout2"
+                android:onClick="doClick2">
+            <ImageView
+                    android:src="@drawable/link"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView3"/>
+            <TextView
+                    android:text="分享"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:gravity="left|center_vertical"
+                    android:id="@+id/textView5"
+            />
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="#ffff93"
+                android:weightSum="1"
+                android:id="@+id/linearLayout3"
+                android:onClick="doClick3">
+            <ImageView
+                    android:src="@drawable/add"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/imageView4"/>
+            <TextView
+                    android:text="添加到菜谱"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    android:id="@+id/textView6"
+                    android:layout_weight="0.79"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

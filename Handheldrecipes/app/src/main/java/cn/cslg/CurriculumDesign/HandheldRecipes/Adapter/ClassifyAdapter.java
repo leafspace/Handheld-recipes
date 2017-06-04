@@ -1,22 +1,21 @@
 package cn.cslg.CurriculumDesign.HandheldRecipes.Adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
+import android.widget.*;
+import java.util.Random;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import cn.cslg.CurriculumDesign.HandheldRecipes.InformationActivity;
-import cn.cslg.CurriculumDesign.HandheldRecipes.R;
-
 import java.util.ArrayList;
-import java.util.List;
+import android.view.ViewGroup;
+import android.content.Intent;
+import android.content.Context;
+import android.view.LayoutInflater;
+import cn.cslg.CurriculumDesign.HandheldRecipes.*;
 
 /**
  * Created by Administrator on 2017/6/3.
+ * LastEdit: 2017-6-4
+ * Contact me:
+ *     Phone: 18852923073
+ *     E-mail: 18852923073@163.com
  */
 public class ClassifyAdapter extends BaseAdapter {
     protected Context context;
@@ -41,10 +40,10 @@ public class ClassifyAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(list.size() % 2 > 0) {
-            return list.size() / 2 + 1;
+        if(list.size() % 3 > 0) {
+            return list.size() / 3 + 1;
         } else {
-            return list.size() / 2;
+            return list.size() / 3;
         }
     }
     @Override
@@ -55,45 +54,67 @@ public class ClassifyAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ListAdapter.ViewHolder viewHolder = null;
+        ClassifyAdapter.ViewHolder viewHolder = null;
         if (convertView == null ) {
             convertView = inflater.inflate(resource, null);
-            viewHolder = new ListAdapter.ViewHolder();
+            viewHolder = new ClassifyAdapter.ViewHolder();
+
             viewHolder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
             viewHolder.textView2 = (TextView) convertView.findViewById(R.id.textView2);
+            viewHolder.textView3 = (TextView) convertView.findViewById(R.id.textView3);
+            viewHolder.textView4 = (TextView) convertView.findViewById(R.id.textView4);
+            viewHolder.textView5 = (TextView) convertView.findViewById(R.id.textView5);
             viewHolder.imageView1 = (ImageView) convertView.findViewById(R.id.imageView1);
             viewHolder.imageView2 = (ImageView) convertView.findViewById(R.id.imageView2);
+            viewHolder.imageView3 = (ImageView) convertView.findViewById(R.id.imageView3);
+            viewHolder.linearLayout = (LinearLayout) convertView.findViewById(R.id.linearLayout);
+
             convertView.setTag(viewHolder);
         }else {
-            viewHolder = (ListAdapter.ViewHolder)convertView.getTag();
+            viewHolder = (ClassifyAdapter.ViewHolder)convertView.getTag();
         }
-        int distance =  list.size() - position*2;
-        int cellCount = distance >= 2 ? 2 : distance;
-        final List<String> itemList = list.subList(position * 2, position * 2 + cellCount);
-        if (itemList.size() > 0) {
-            String index = itemList.get(0);
-            this.setViewHolder(viewHolder.textView1, viewHolder.imageView1, index);
-            this.setListterner(viewHolder.textView1, viewHolder.imageView1);
 
-            if (itemList.size() > 1){
-                index = itemList.get(1);
-                viewHolder.textView2.setVisibility(View.VISIBLE);
-                viewHolder.imageView2.setVisibility(View.VISIBLE);
-                this.setViewHolder(viewHolder.textView2, viewHolder.imageView2, index);
-                this.setListterner(viewHolder.textView2, viewHolder.imageView2);
-            }else{
-                viewHolder.textView2.setVisibility(View.INVISIBLE);
-                viewHolder.imageView2.setVisibility(View.INVISIBLE);
-            }
+        switch (position)
+        {
+            case 0 : viewHolder.textView4.setText("川"); viewHolder.textView5.setText("菜"); break;
+            case 1 : viewHolder.textView4.setText("湘"); viewHolder.textView5.setText("菜"); break;
+            case 2 : viewHolder.textView4.setText("浙"); viewHolder.textView5.setText("菜"); break;
+            case 3 : viewHolder.textView4.setText("徽"); viewHolder.textView5.setText("菜"); break;
+            default: break;
         }
+        this.setViewHolder(viewHolder);
         return convertView;
     }
 
-    private void setViewHolder(TextView textView, ImageView imageView, String index) {
-        textView.setText(textList[Integer.parseInt(index)]);
-        imageView.setImageResource(imageList[Integer.parseInt(index)]);
+    private void setViewHolder(ViewHolder viewHolder) {
+        int[] index = new int[3];
+        int isexist = 0;
+        do {
+            Random random = new Random();
+            int randomNumber = random.nextInt(10);
+            int i;
+            for(i = 0; i < isexist; ++i) {
+                if(index[i] == randomNumber) {
+                    break;
+                }
+            }
+
+            if(i == isexist) {
+                index[isexist++] = randomNumber;
+            }
+        } while (isexist != 3);
+
+        viewHolder.textView1.setText(textList[index[0]]);
+        viewHolder.textView2.setText(textList[index[1]]);
+        viewHolder.textView3.setText(textList[index[2]]);
+
+        viewHolder.imageView1.setImageResource(imageList[index[0]]);
+        viewHolder.imageView2.setImageResource(imageList[index[1]]);
+        viewHolder.imageView3.setImageResource(imageList[index[2]]);
+        this.setListterner(viewHolder);
     }
 
     private int findID(TextView textView) {
@@ -109,32 +130,71 @@ public class ClassifyAdapter extends BaseAdapter {
     }
 
     private void showInfo(TextView textView, ImageView imageView) {
-        Toast.makeText(context, textView.getText(), 1000).show();
         final Intent intent = new Intent(context, InformationActivity.class);
         intent.putExtra("id", findID(textView));
         context.startActivity(intent);
     }
 
-    private void setListterner(final TextView textView, final ImageView imageView) {
-        textView.setOnClickListener(new View.OnClickListener() {
+    private void setListterner(final ViewHolder viewHolder) {
+        final String cuisine = viewHolder.textView4.getText().toString() + viewHolder.textView5.getText().toString();
+        viewHolder.textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showInfo(textView, imageView);
+                showInfo(viewHolder.textView1, viewHolder.imageView1);
+            }
+        });
+        viewHolder.textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInfo(viewHolder.textView2, viewHolder.imageView2);
+            }
+        });
+        viewHolder.textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInfo(viewHolder.textView3, viewHolder.imageView3);
+            }
+        });
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(context, SearchActivity.class);
+                intent.putExtra("keyWords", cuisine);
+                context.startActivity(intent);
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showInfo(textView, imageView);
+                showInfo(viewHolder.textView1, viewHolder.imageView1);
             }
         });
+
+        viewHolder.imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInfo(viewHolder.textView2, viewHolder.imageView2);
+            }
+        });
+        viewHolder.imageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInfo(viewHolder.textView3, viewHolder.imageView3);
+            }
+        });
+
     }
 
     public class ViewHolder {
         TextView textView1;
         TextView textView2;
+        TextView textView3;
+        TextView textView4;
+        TextView textView5;
         ImageView imageView1;
         ImageView imageView2;
+        ImageView imageView3;
+        LinearLayout linearLayout;
     }
 }

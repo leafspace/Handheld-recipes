@@ -53,9 +53,38 @@ public class MainActivity extends Activity {
         this.setGoods();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch(id)
+        {
+            case R.id.todayFoods : this.showFoods(); break;
+            default: break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void showFoods() {
+        final Intent intent = new Intent(MainActivity.this, ShowFoodsActivity.class);
+        startActivity(intent);
+    }
+
     public void doSearch(View view) {
         String keyWords = searchEdit.getText().toString();
         keyWords.trim();
+        if(keyWords.equals("搜索")) {
+            keyWords = "";
+        }
         if(keyWords.length() != 0) {
             final Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             intent.putExtra("keyWords", keyWords);

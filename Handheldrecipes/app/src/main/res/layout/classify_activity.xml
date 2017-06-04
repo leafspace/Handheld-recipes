@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#ffffff"
+              tools:context="cn.cslg.CurriculumDesign.HandheldRecipes.ClassifyActivity">
 
     <TextView
-            android:text="TextView"
+            android:text="菜系分类"
             android:layout_width="match_parent"
-            android:layout_height="43dp" android:id="@+id/textView"
-            android:background="@drawable/searchview"/>
+            android:layout_height="45dp"
+            android:id="@+id/textView"
+            android:gravity="left|center_vertical"
+            android:background="#bbbbbb"
+            android:textSize="24sp"/>
     <ListView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

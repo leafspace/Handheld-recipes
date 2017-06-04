@@ -3,7 +3,6 @@ package cn.cslg.CurriculumDesign.HandheldRecipes.Adapter;
 import java.util.List;
 import android.view.View;
 import java.util.ArrayList;
-import android.widget.Toast;
 import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -112,7 +111,6 @@ public class ListAdapter extends BaseAdapter {
     }
 
     private void showInfo(TextView textView, ImageView imageView) {
-        Toast.makeText(context, textView.getText(), 1000).show();
         final Intent intent = new Intent(context, InformationActivity.class);
         intent.putExtra("id", findID(textView));
         context.startActivity(intent);
