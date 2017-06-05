@@ -4,9 +4,4 @@
             android:orderInCategory="100"
             android:showAsAction="never"
             android:title="今日菜谱"/>
-    <item
-            android:id="@+id/about"
-            android:orderInCategory="100"
-            android:showAsAction="never"
-            android:title="关于"/>
 </menu>

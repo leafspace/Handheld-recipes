@@ -13,10 +13,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.content.Context;
+import android.app.AlertDialog;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.support.v4.view.ViewPager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.content.DialogInterface.OnClickListener;
 import cn.cslg.CurriculumDesign.HandheldRecipes.Adapter.MyAdapter;
 import cn.cslg.CurriculumDesign.HandheldRecipes.Adapter.ListAdapter;
 
@@ -69,9 +72,25 @@ public class MainActivity extends Activity {
         switch(id)
         {
             case R.id.todayFoods : this.showFoods(); break;
+            case R.id.about : this.showDialog(); break;
             default: break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog() {
+        String information = "掌上菜谱V1.0\n"
+                + "作者：张立飞（092214109）";
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("关于我们");
+        builder.setMessage(information);
+        builder.setPositiveButton("确定", new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
     public void showFoods() {
